@@ -2,6 +2,8 @@
   <div class="shoplist_contitainer">
     <ul>
       <li></li>
+      <li>我测试一下</li>
+      <li>再试一下</li>
     </ul>
   </div>
 </template>
