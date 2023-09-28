@@ -63,7 +63,7 @@ export default {
   },
 
   mounted() {
-    axios.get('http://localhost:3008/footType').then(res => {
+    axios.get('http://localhost:3008/foodType').then(res => {
       let resArr = res.data;
       let resLength = resArr.length
       let foodArr = []
