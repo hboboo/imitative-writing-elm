@@ -27,6 +27,7 @@
         <span class="shop_header_title">附近商家</span>
       </header>
     </div>
+    <shop-list></shop-list>
     <foot-guide></foot-guide>
   </div>
 </template>
@@ -35,6 +36,7 @@
 import headTop from '../../components/header/head.vue'
 import svgIcon from '../../components/common/svgIcon.vue'
 import footGuide from '../../components/footer/footGuide.vue'
+import shopList from '../../components/common/shoplist.vue'
 import axios from 'axios';
 
 export default {
@@ -83,7 +85,8 @@ export default {
   components: {
     headTop,
     svgIcon,
-    footGuide
+    footGuide,
+    shopList
   }
 };
 </script>

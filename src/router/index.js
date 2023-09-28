@@ -8,6 +8,7 @@ const login = () => import('../views/login/login.vue')
 const msite = () => import('../views/msite/msite.vue')
 
 
+
 Vue.use(VueRouter)
 
 const routes = [{
