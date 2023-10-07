@@ -19,7 +19,26 @@
                   <rating-star :rating='item.rating'></rating-star>
                   <span class="rating_num">{{item.rating}}</span>
                 </section>
+                <section class="order_section">
+                  月售{{item.recent_order_num}}单
+                </section>
               </section>
+              <section class="rating_order_num_right">
+                <span class="delivery_style delivery_left">{{item.delivery_mode.text}}</span>
+                <span class="delivery_style delivery_right">准时达</span>
+              </section>
+            </h5>
+            <h5 class="fee_distance">
+              <p class="fee">
+                ￥{{item.float_minimum_order_amount}}起送
+                <span class="segmentation">/</span>
+                {{item.piecewise_agent_fee.tips}}
+              </p>
+              <p class="distance_time">
+                <span>{{item.distance}}</span>
+                <span class="segmentation">/</span>
+                <span class="order_time">{{item.order_lead_time}}</span>
+              </p>
             </h5>
           </div>
         </router-link>
@@ -119,9 +138,62 @@ export default {
       margin-top: 0.52rem;
       .rating_order_num_left{
         .fj(flex-start);
-        .rating_num{
-          .sc(0.4rem, #ff6000);
-          margin: 0 0.2rem;
+        .rating_section{
+          display: flex;
+          .rating_num{
+            .sc(0.4rem, #ff6000);
+            margin: 0 0.2rem;
+          }
+        }
+        .order_section{
+          transform: scale(.8);
+          margin-left: -0.2rem;
+          .sc(0.4rem, #666)
+        }
+      }
+      .rating_order_num_right{
+        display: flex;
+        align-items: center;
+        transform: scale(.7);
+        min-width: 5rem;
+        justify-content: flex-end;
+        margin-right: -0.8rem;
+        .delivery_style{
+          font-size: 0.4rem;
+          padding: 0.04rem 0.08rem 0;
+          border-radius: 0.08rem;
+          margin-left: 0.08rem;
+          border: 1px;
+        }
+        .delivery_left{
+          color: #fff;
+          background-color: @blue;
+          border: 0.025rem solid @blue;
+        }
+        .delivery_right{
+          color: @blue;
+          border: 0.025rem solid @blue;
+        }
+      }
+    }
+    .fee_distance{
+      margin-top: 0.52rem;
+      .fj;
+      .sc(0.5rem, #333);
+      .fee{
+        transform: scale(.9);
+        .sc(0.5rem, #666)
+      }
+      .distance_time{
+        transform: scale(.9);
+        span{
+          color: #999;
+        }
+        .order_time{
+          color: @blue;
+        }
+        .segmentation{
+          color: #ccc;
         }
       }
     }
