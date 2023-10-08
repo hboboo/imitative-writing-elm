@@ -1,7 +1,7 @@
 <template>
   <div>
     <head-top>
-      <router-link to="" slot="search">
+      <router-link :to="'/search'" slot="search">
         <svg-icon icon-class="search" class="line_search"></svg-icon>
       </router-link>
     </head-top>

@@ -81,7 +81,8 @@ export default {
 
   .shoplist_container{
     background-color: #fff;
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
+    padding-bottom: 1.8rem;
   }
   .shop_li{
     display: flex;

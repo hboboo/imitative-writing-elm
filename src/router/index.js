@@ -6,6 +6,7 @@ const home = () => import('../views/home/home.vue')
 const city = () => import('../views/city/city.vue')
 const login = () => import('../views/login/login.vue')
 const msite = () => import('../views/msite/msite.vue')
+const search = () => import('../views/search/search.vue')
 
 
 
@@ -38,6 +39,11 @@ const routes = [{
     {
       path: '/msite',
       component: msite
+    },
+    //搜索页
+    {
+      path: '/search',
+      component: search
     }
   ]
 }]
