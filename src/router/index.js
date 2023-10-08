@@ -7,6 +7,7 @@ const city = () => import('../views/city/city.vue')
 const login = () => import('../views/login/login.vue')
 const msite = () => import('../views/msite/msite.vue')
 const search = () => import('../views/search/search.vue')
+const profile = () => import('../views/profile/profile.vue')
 
 
 
@@ -44,6 +45,11 @@ const routes = [{
     {
       path: '/search',
       component: search
+    },
+    //我的页面
+    {
+      path: '/profile',
+      component: profile
     }
   ]
 }]
