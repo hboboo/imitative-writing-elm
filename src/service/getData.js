@@ -42,3 +42,4 @@ export const accountLogin = (username, password, captcha_code) => fetch('/v2/log
 * 获取msite页面食品分类列表
 */
 // export const msiteFoodTypes = () => axios.get('http://localhost:3008/footType')
+

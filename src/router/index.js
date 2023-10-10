@@ -8,6 +8,7 @@ const login = () => import('../views/login/login.vue')
 const msite = () => import('../views/msite/msite.vue')
 const search = () => import('../views/search/search.vue')
 const profile = () => import('../views/profile/profile.vue')
+const shop = () => import('../views/shop/shop.vue')
 
 
 
@@ -50,6 +51,11 @@ const routes = [{
     {
       path: '/profile',
       component: profile
+    },
+    //商铺详情
+    {
+      path: '/shop',
+      component: shop
     }
   ]
 }]
