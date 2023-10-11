@@ -90,6 +90,21 @@
                 </ul>
               </section>
             </section>
+            <section class="buy-cart-container">
+              <section class="cart-icon-num">
+                <div class="cart-icon-container">
+                  <!-- <span class="cart-list-length">1</span> -->
+                  <svg-icon iconClass="shopping_cart" class="cart-icon-num"></svg-icon>
+                </div>
+                <div class="cart-num">
+                  <div>￥12</div>
+                  <div>费送费￥15</div>
+                </div>
+              </section>
+              <section class="gotopay">
+                <span class="gotopay-button-style">还差￥20起送</span>
+              </section>
+            </section>
         </section>
       </transition>
     </section>
@@ -523,5 +538,63 @@ export default {
     z-index: 13;
     display: flex;
     .wh(100%, 2rem);
+    .cart-icon-num{
+      flex: 1;
+      .cart-icon-container{
+        display: flex;
+        background-color: #3d3d3f;
+        position: absolute;
+        padding: .4rem;
+        border: 0.18rem solid #444;
+        border-radius: 50%;
+        left: .5rem;
+        top: -.7rem;
+        .cart-icon-num{
+          .wh(1.2rem, 1.2rem);
+        }
+        .cart-list-length{
+          position: absolute;
+          top: -.25rem;
+          right: -.25rem;
+          background-color: #ff461d;
+          line-height: .7rem;
+          text-align: center;
+          border: 0.025rem solid #ff461d;
+          min-width: .7rem;
+          height: .7rem;
+          .sc(.5rem, #fff);
+          font-family: Helvetica Neue,Tahoma,Arial;
+        }
+      }
+      .cart-num{
+        .ct;
+        left: 3.5rem;
+        div{
+          color: #fff;
+        }
+        div:nth-of-type(1){
+          font-size: .8rem;
+          font-weight: bold;
+          margin-bottom: .1rem;
+        }
+        div:nth-of-type(2){
+          font-size: .4rem;
+        }
+      }
+    }
+    .gotopay{
+      position: absolute;
+      right: 0;
+      background-color: #535356;
+      .wh(5rem, 100%);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .gotopay-button-style{
+        .sc(.7rem, #fff);
+        font-weight: bold;
+      }
+    }
   }
 </style>
