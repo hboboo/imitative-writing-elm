@@ -30,6 +30,68 @@
           </footer>
         </section>
       </header>
+      <section class="change-show-type">
+        <div>
+          <span :class="{ activity_show: changeShow == 'food'}" @click="changeShow = 'food'">商品</span>
+        </div>
+        <div>
+          <span :class="{ activity_show: changeShow == 'rating'}" @click="changeShow = 'rating'">评价</span>
+        </div>
+      </section>
+      <transition>
+        <section v-show="changeShow == 'food'" class="food-container">
+            <section class="menu-container">
+              <section class="menu-left">
+                <ul>
+                  <li v-for="(item,index) in menuList" :key="index" class="menu-left-li" :class="{activity_menu : index == menuIndex}" @click="chooseMenu(index)">
+                    <span>{{item.name}}</span>
+                  </li>
+                </ul>
+              </section>
+              <section class="menu-right">
+                <ul>
+                  <li v-for="(item, index) in menuList" :key="index">
+                    <header class="menu-detail-header">
+                      <section class="menu-detail-header-left">
+                        <strong class="menu-item-tiile">{{item.name}}</strong>
+                        <span class="menu-item-description">{{item.description}}</span>
+                      </section>
+                    </header>
+                    <section class="menu-detail-list" v-for="(foods,foodindex) in item.foods" :key="foodindex">
+                      <router-link  class="menu-detail-link" to="/home" custom v-slot="{navigate}">
+                        <div @click="navigate" role="link">
+                          <section class="menu-food-img">
+                          <img :src="foods.image_url" >
+                        </section>
+                        <section class="menu-food-description">
+                          <h3 class="food-description-head">
+                            <strong class="description-foodname">{{foods.name}}</strong>
+                          </h3>
+                          <p class="food-description-content">{{foods.description}}</p>
+                          <p class="food-description-sale-rating">
+                            <span>月售{{foods.month_sales}}份</span>
+                            <span>好评率{{foods.satisfy_rate}}%</span>
+                          </p>
+                          <p class="food-activity">
+                            <span>{{foods.activity}}</span>
+                          </p>
+                        </section>
+                        </div>
+                      </router-link>
+                      <footer class="menu-detail-footer">
+                        <section class="food-price">
+                          <span>￥</span>
+                          <span>15</span>
+                        </section>
+                        <button>+</button>
+                      </footer>
+                    </section>
+                  </li>
+                </ul>
+              </section>
+            </section>
+        </section>
+      </transition>
     </section>
   </div>
 </template>
@@ -48,9 +110,133 @@ export default {
         promotion: '绿色健康环保',
         iconName: '减',
         description: '满30减5，满60减8',
-        activitiesLength: 1
-      }
-    };
+        activitiesLength: 1,
+      },
+      changeShow: 'food',
+      menuIndex: 0,
+      menuList: [
+        {
+          name:'炒饭',
+          description:'吃炒饭',
+          foods:[
+            {
+              name:'兰州炒饭',
+              description: '+++++',
+              month_sales: 400,
+              satisfy_rate: 98,
+              image_url: "https://fuss10.elemecdn.com/2/35/696aa5cf9820adada9b11a3d14bf5jpeg.jpeg",
+              activity: '按时到达',
+            },
+            {
+              name:'广州炒饭',
+              description: '好吃的',
+              month_sales: 1200,
+              satisfy_rate: 88,
+              image_url: "https://fuss10.elemecdn.com/8/83/171fd98b85dee3b3f4243b7459b48jpeg.jpeg",
+              activity: '活动',
+            },
+            {
+              name:'无情铁手',
+              description: '速速下单',
+              month_sales: 800,
+              satisfy_rate: 95,
+              image_url: "https://fuss10.elemecdn.com/2/17/244241b514affc0f12f4168cf6628jpeg.jpeg",
+              activity: '热卖',
+            }
+          ],
+        },
+        {
+          name:'早餐',
+          description:'吃早餐',
+          foods:[
+            {
+              name:'面包',
+              description: '2块一个',
+              month_sales: 3500,
+              satisfy_rate: 96,
+              image_url: "https://fuss10.elemecdn.com/3/c7/a9ef469a12e7a596b559145b87f09jpeg.jpeg",
+              activity: '活动++',
+            },
+            {
+              name:'肉包',
+              description: '买买买',
+              month_sales: 1600,
+              satisfy_rate: 80,
+              image_url: "https://fuss10.elemecdn.com/9/7c/9700836a33e05c2410bda8da59117jpeg.jpeg",
+              activity: '准时到',
+            },
+            {
+              name:'炒粉',
+              description: '难吃的炒粉',
+              month_sales: 150,
+              satisfy_rate: 60,
+              image_url: "https://fuss10.elemecdn.com/e/7e/02b72b5e63c127d5bfae57b8e4ab1jpeg.jpeg",
+              activity: '不退换',
+            }
+          ],
+        },
+        {
+          name:'晚餐',
+          description:'吃晚餐',
+          foods:[
+            {
+              name:'广式套餐',
+              description: '腊肠',
+              month_sales: 150,
+              satisfy_rate: 50,
+              image_url: "https://fuss10.elemecdn.com/d/49/7757ff22e8ab28e7dfa5f7e2c2692jpeg.jpeg",
+              activity: '活动---',
+            },
+            {
+              name:'青瓜炒肉',
+              description: '非常好吃',
+              month_sales: 1800,
+              satisfy_rate: 98,
+              image_url: "https://fuss10.elemecdn.com/3/84/8e031bf7b3c036b4ec19edff16e46jpeg.jpeg",
+              activity: '活动1111',
+            },
+            {
+              name:'难吃的菜',
+              description: '不多说',
+              month_sales: 80,
+              satisfy_rate: 75,
+              image_url: "https://fuss10.elemecdn.com/a/fa/d41b04d520d445dc5de42dae9a384jpeg.jpeg",
+              activity: '无',
+            }
+          ],
+        },
+        {
+          name:'宵夜',
+          description:'吃宵夜',
+          foods:[
+            {
+              name:'烧烤套餐',
+              description: '肥仔套餐',
+              month_sales: 900,
+              satisfy_rate: 87,
+              image_url: "https://fuss10.elemecdn.com/d/38/7bddb07503aea4b711236348e2632jpeg.jpeg",
+              activity: '晚活动',
+            },
+            {
+              name:'啤酒套餐',
+              description: '痛风套餐',
+              month_sales: 4500,
+              satisfy_rate: 76,
+              image_url:"https://fuss10.elemecdn.com/b/7e/d1890cf73ae6f2adb97caa39de7fcjpeg.jpeg",
+              activity: '送送送',
+            },
+            {
+              name:'凌晨的粥',
+              description: '喝完整一碗',
+              month_sales: 320,
+              satisfy_rate: 87,
+              image_url:"https://fuss10.elemecdn.com/0/da/f42235e6929a5cb0e7013115ce78djpeg.jpeg",
+              activity: '试试',
+            }
+          ],
+        },
+      ]
+    }
   },
 
   mounted() {
@@ -60,6 +246,9 @@ export default {
   methods: {
     goback(){
       this.$router.go(-1)
+    },
+    chooseMenu(index) {
+      this.menuIndex = index
     }
   },
 
@@ -176,5 +365,163 @@ export default {
         }
       }
     }
+  }
+  .change-show-type{
+    display: flex;
+    background: #fff;
+    padding: .3rem 0 .6rem;
+    border-bottom: 1px solid #ebebeb;
+    div{
+      flex: 1;
+      text-align: center;
+      span{
+        .sc(.65rem, #666);
+        padding: .2rem .1rem;
+        border-bottom: 0.12rem solid #fff;
+      }
+      .activity_show{
+        color: #3190e8;
+        border-color: #3190e8;
+      }
+    }
+  }
+  .food-container{
+    display: flex;
+    flex: 1;
+    padding-bottom: 2rem;
+    overflow: hidden;
+  }
+  .menu-container{
+    display: flex;
+    flex: 1;
+    overflow-y: hidden;
+    position: relative;
+    .menu-left{
+      width: 3.8rem;
+      .menu-left-li{
+        padding: .7rem .3rem;
+        border-bottom: 0.025rem solid #ededed;
+        box-sizing: border-box;
+        border-left: 0.15rem solid #f8f8f8;
+        position: relative;
+        span{
+          .sc(.6rem, #666)
+        }
+      }
+      .activity_menu{
+        border-left: 0.15rem solid #3190e8;
+        background-color: #fff;
+        span:nth-of-type(1){
+          font-weight: bold;
+        }
+      }
+    }
+    .menu-right{
+      flex: 4;
+      overflow-y: auto;
+      .menu-detail-header{
+        width: 100%;
+        padding: .4rem;
+        position: relative;
+        .fj;
+        align-items: center;
+        .menu-detail-header-left{
+          width: 11rem;
+          white-space: nowrap;
+          overflow: hidden;
+          .menu-item-tiile{
+            .sc(.6rem, #666);
+            font-weight: bold;
+          }
+          .menu-item-description{
+            .sc(.5rem, #999);
+            padding-left: .4rem;
+            width: 30%;
+            overflow: hidden;
+          }
+        }
+      }
+      .menu-detail-list{
+        background-color: #fff;
+        padding: .6rem .4rem;
+        border-bottom: 1px solid #f8f8f8;
+        position: relative;
+        overflow: hidden;
+        .menu-detail-link{
+          display: flex;
+          .menu-food-img{
+            margin-right: .4rem;
+            img{
+              .wh(2rem, 2rem);
+              display: block;
+            }
+          }
+          .menu-food-description{
+            width: 100%;
+            .food-description-head{
+              .fj;
+              margin-bottom: .2rem;
+              .description-foodname{
+                .sc(.7rem, #333);
+              }
+            }
+            .food-description-content{
+              .sc(.5rem, #999);
+              line-height: .6rem;
+            }
+            .food-description-sale-rating{
+              line-height: .8rem;
+              span{
+                .sc(.5rem, #333);
+                margin-right:.3rem;
+              }
+            }
+            .food-activity{
+              line-height: .4rem;
+              span{
+                font-size: .3rem;
+                border: 1px solid currentColor;
+                border-radius: 0.3rem;
+                padding: .08rem;
+                display: inline-block;
+                transform: scale(.8);
+                margin-left: -0.35rem;
+                color: rgb(241, 136, 79);
+                border-color: rgb(240, 115, 115);
+              }
+            }
+          }
+        }
+        .menu-detail-footer{
+          margin-left: 2.4rem;
+          font-size: 0;
+          margin-top: .3rem;
+          .fj;
+          .food-price{
+            span{
+              font-family: 'Helvetica Neue',Tahoma,Arial;
+            }
+            span:nth-of-type(1){
+              .sc(.5rem, #f60);
+              margin-right: .05rem;
+            }
+            span:nth-of-type(2){
+              .sc(.7rem, #f60);
+              font: bold;
+              margin-right: .3rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  .buy-cart-container{
+    position: absolute;
+    background-color: #3d3d3f;
+    bottom: 0;
+    left: 0;
+    z-index: 13;
+    display: flex;
+    .wh(100%, 2rem);
   }
 </style>
