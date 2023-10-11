@@ -107,12 +107,42 @@
             </section>
         </section>
       </transition>
+      <transition>
+        <section class="rating-container" v-show="changeShow == 'rating'">
+          <section>
+            <header class="rating-header">
+              <section class="rating-header-left">
+                <p>4.8</p>
+                <p>综合评价</p>
+                <p>高于周边商家76.9%</p>
+              </section>
+              <section class="rating-header-right">
+                <p>
+                  <span>服务态度</span>
+                  <rating-star rating="4.7"></rating-star>
+                  <span class="rating-num">4.7</span>
+                </p>
+                <p>
+                  <span>菜品评价</span>
+                  <rating-star rating="4.8"></rating-star>
+                  <span class="rating-num">4.8</span>
+                </p>
+                <p>
+                  <span>送达时间</span>
+                  <span class="delivery-time">8</span>
+                </p>
+              </section>
+            </header>
+          </section>
+        </section>
+      </transition>
     </section>
   </div>
 </template>
 
 <script>
 import svgIcon from '../../components/common/svgIcon.vue'
+import ratingStar from '../../components/common/ratingStar.vue'
 export default {
   name: 'Shop',
 
@@ -268,7 +298,8 @@ export default {
   },
 
   components: {
-    svgIcon
+    svgIcon,
+    ratingStar
   }
 };
 </script>
@@ -594,6 +625,56 @@ export default {
       .gotopay-button-style{
         .sc(.7rem, #fff);
         font-weight: bold;
+      }
+    }
+  }
+  .rating-container{
+    flex: 1;
+    overflow: hidden;
+    flex-direction: column;
+    p, span, li{
+      font-family: Helvetica Neue,Tahoma,Arial;
+    }
+    .rating-header{
+      display: flex;
+      background-color: #fff;
+      padding: .8rem .5rem;
+      margin-bottom: 0.5rem;
+      .rating-header-left{
+        flex: 3;
+        text-align: center;
+        p:nth-of-type(1){
+          .sc(1.2rem, #f60);
+        }
+         p:nth-of-type(2){
+          .sc(.65rem, #666);
+          margin-bottom: .1rem;
+        }
+         p:nth-of-type(3){
+          .sc(.4rem, #999);
+        }
+      }
+      .rating-header-right{
+        flex: 4;
+        p{
+          font-size: .65rem;
+          line-height: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          span:nth-of-type(1){
+            color: #666;
+            margin-right: .5rem;
+          }
+          .rating-num{
+            width: 3rem;
+            .sc(.55rem, #f60);
+            padding-left: 0.5rem;
+          }
+          .deliver-time{
+            .sc(.4rem, #999)
+          }
+        }
       }
     }
   }
