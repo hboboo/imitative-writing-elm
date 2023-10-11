@@ -133,6 +133,9 @@
                 </p>
               </section>
             </header>
+            <ul class="tag-list-ul">
+              <li v-for="(item, index) in ratingTagsList" :key="index" :class="{unsatisfied: item.unsatisfied, tagActivity: ratingTageIndex == index}" @click="changeTgeIndex(index)">{{item.name}}({{item.count}})</li>
+            </ul>
           </section>
         </section>
       </transition>
@@ -158,6 +161,7 @@ export default {
         activitiesLength: 1,
       },
       changeShow: 'food',
+      ratingTageIndex: 0,
       menuIndex: 0,
       menuList: [
         {
@@ -280,6 +284,53 @@ export default {
             }
           ],
         },
+      ],
+      ratingTagsList: [
+        {
+          name: '全部',
+          count: 473
+        },
+        {
+          name: '满意',
+          count: 453
+        },
+        {
+          name: '不满意',
+          count: 20,
+          unsatisfied: true
+        },
+        {
+          name: '有图',
+          count: 2
+        },
+        {
+          name: '味道好',
+          count: 47
+        },
+        {
+          name: '送货快',
+          count: 32
+        },
+        {
+          name: '分量足',
+          count: 18
+        },
+        {
+          name: '包装精美',
+          count: 15
+        },
+        {
+          name: '卫生干净',
+          count: 15
+        },
+        {
+          name: '食材新鲜',
+          count: 15
+        },
+        {
+          name: '服务不错',
+          count: 11
+        },
       ]
     }
   },
@@ -294,6 +345,9 @@ export default {
     },
     chooseMenu(index) {
       this.menuIndex = index
+    },
+    changeTgeIndex(index){
+      this.ratingTageIndex = index
     }
   },
 
@@ -675,6 +729,28 @@ export default {
             .sc(.4rem, #999)
           }
         }
+      }
+    }
+    .tag-list-ul{
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #fff;
+      padding: .5rem;
+      li{
+        .sc(.6rem, #6d7885);
+        padding: .3rem .3rem;
+        background-color: #ebf5ff;
+        border-radius: 0.2rem;
+        border: 1px;
+        margin: 0 .4rem .2rem 0;
+      }
+      .unsatisfied{
+        background-color: #f5f5f5;
+        color: #aaa;
+      }
+      .tagActivity{
+        background-color: #3190e8;
+        color: #fff;
       }
     }
   }
