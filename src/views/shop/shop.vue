@@ -136,6 +136,33 @@
             <ul class="tag-list-ul">
               <li v-for="(item, index) in ratingTagsList" :key="index" :class="{unsatisfied: item.unsatisfied, tagActivity: ratingTageIndex == index}" @click="changeTgeIndex(index)">{{item.name}}({{item.count}})</li>
             </ul>
+            <ul class="rating-list-ul">
+              <li class="rating-list-li" v-for="(item, index) in ratingList" :key="index">
+                <img src="https://elm.cangdu.org/img/default.jpg"  class="user-avatar">
+                <section class="rating-list-details">
+                  <header>
+                    <section class="username-star">
+                      <p class="username">{{item.name}}</p>
+                      <p class="star-desc">
+                        <rating-star rating="5"></rating-star>
+                        <span class="time-spent-desc">{{item.time_spent_desc}}</span>
+                      </p>
+                    </section>
+                    <time class="rated-at">{{item.rated_at}}</time>
+                  </header>
+                  <ul class="food-img-ul">
+                    <li v-for="(item, index) in item.item_ratings" :key="index">
+                      <img :src="item.image_hash" v-if="item.image_hash">
+                    </li>
+                  </ul>
+                  <ul class="food-name-ul">
+                    <li v-for="(item, index) in item.item_ratings" :key="index" class="ellipsis">
+                      {{item.food_name}}
+                    </li>
+                  </ul>
+                </section>
+              </li>
+            </ul>
           </section>
         </section>
       </transition>
@@ -331,7 +358,52 @@ export default {
           name: '服务不错',
           count: 11
         },
-      ]
+      ],
+      ratingList: [
+        {
+          name: '4*******b',
+          rated_at: '2023-02-10',
+          time_spent_desc: '按时送达',
+          item_ratings: [
+            {
+              image_hash: 'https://fuss10.elemecdn.com/d/c8/64033625905f0a15a2d181d53a425jpeg.jpeg',
+              food_name: '超级无敌大碗饭++++++',
+            },
+            {
+              image_hash: 'https://fuss10.elemecdn.com/0/74/e0e203f613deff4e456c31e4177d1jpeg.jpeg',
+              food_name: '我爱吃汤圆++++++',
+            },
+          ]
+        },
+        {
+          name: '6*******a',
+          rated_at: '2023-09-10',
+          item_ratings: [
+            {
+              image_hash: 'https://fuss10.elemecdn.com/5/38/8b26ad173389d89e0e015dbf295fcjpeg.jpeg',
+              food_name: '韩式烧烤卡卡卡卡卡',
+            },
+          ]
+        },
+        {
+          name: 'ha*******b',
+          rated_at: '2023-10-10',
+          time_spent_desc: '专门喷人',
+        },
+        {
+          name: '+++++++++',
+          rated_at: '2023-10-12',
+          item_ratings: [
+            {
+              food_name: '我爱喷人',
+            }
+          ]
+        },
+        {
+          name: '------',
+          rated_at: '2023-12-10',
+        },
+      ],
     }
   },
 
@@ -684,9 +756,9 @@ export default {
   }
   .rating-container{
     flex: 1;
-    overflow: hidden;
+    overflow: auto;
     flex-direction: column;
-    p, span, li{
+    p, span, li, time{
       font-family: Helvetica Neue,Tahoma,Arial;
     }
     .rating-header{
@@ -751,6 +823,72 @@ export default {
       .tagActivity{
         background-color: #3190e8;
         color: #fff;
+      }
+    }
+    .rating-list-ul{
+      background-color: #fff;
+      padding: 0 .5rem;
+      .rating-list-li{
+        border-top: 1px solid #f1f1f1;
+        display: flex;
+        padding: .6rem 0;
+        .user-avatar{
+          .wh(1.5rem, 1.5rem);
+          border: 0.025rem;
+          border-radius: 50%;
+          margin-right: .8rem;
+        }
+        .rating-list-details{
+          flex: 1;
+          header{
+            display: flex;
+            flex: 1;
+            justify-content: space-between;
+            margin-bottom: .3rem;
+            .username-star{
+              .sc(.55rem, #666);
+              .username{
+                color: #666;
+                margin-bottom: .2rem;
+              }
+              .star-desc{
+                display: flex;
+                align-items: center;
+                .time-spent-desc{
+                  .sc(.55rem, #666);
+                  margin-left: .15rem;
+                }
+              }
+            }
+            .rated-at{
+              .sc(.4rem, #999);
+            }
+          }
+          .food-img-ul{
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: .4rem;
+            li{
+              img{
+                .wh(3rem, 3rem);
+                margin-right: .4rem;
+                display: block;
+              }
+            }
+          }
+          .food-name-ul{
+            display: flex;
+            flex-wrap: wrap;
+            li{
+              .sc(.55rem, #999);
+              width: 2.2rem;
+              padding: .2rem;
+              border: 0.025rem solid #ebebeb;
+              border-radius: .3rem;
+              margin-bottom: 4px;
+            }
+          }
+        }
       }
     }
   }
