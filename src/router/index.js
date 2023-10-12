@@ -9,6 +9,7 @@ const msite = () => import('../views/msite/msite.vue')
 const search = () => import('../views/search/search.vue')
 const profile = () => import('../views/profile/profile.vue')
 const shop = () => import('../views/shop/shop.vue')
+const order = () => import('../views/order/order.vue')
 
 
 
@@ -56,7 +57,12 @@ const routes = [{
     {
       path: '/shop',
       component: shop
-    }
+    },
+    //订单列表页
+    {
+      path: '/order',
+      component: order
+    },
   ]
 }]
 
