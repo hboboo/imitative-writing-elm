@@ -1,19 +1,19 @@
 <template>
   <section id="foot_guide">
-    <section class="guide_item" @click="gotoAddress(0)">
-      <svg-icon icon-class="takeout" class="icon_style" :class="{active: isActiv[0]}"></svg-icon>
+    <section class="guide_item" @click="gotoAddress('/msite')" >
+      <svg-icon icon-class="takeout" class="icon_style" :class="{ active: isActive('/msite') }"></svg-icon>
       <span>外卖</span>
     </section>
-    <section class="guide_item" @click="gotoAddress(1)">
-      <svg-icon icon-class="probe" class="icon_style" :class="{active: isActiv[1]}"></svg-icon>
+    <section class="guide_item" @click="gotoAddress('/search')">
+      <svg-icon icon-class="probe" class="icon_style" :class="{ active: isActive('/search') }"></svg-icon>
       <span>搜索</span>
     </section>
-    <section class="guide_item" @click="gotoAddress(2)">
-      <svg-icon icon-class="order" class="icon_style" :class="{active: isActiv[2]}"></svg-icon>
+    <section class="guide_item" @click="gotoAddress('/order')">
+      <svg-icon icon-class="order" class="icon_style" :class="{ active: isActive('/order') }"></svg-icon>
       <span>订单</span>
     </section>
-    <section class="guide_item" @click="gotoAddress(3)">
-      <svg-icon icon-class="myhomepage" class="icon_style" :class="{active: isActiv[3]}"></svg-icon>
+    <section class="guide_item" @click="gotoAddress('/profile')">
+      <svg-icon icon-class="myhomepage" class="icon_style" :class="{ active: isActive('/profile') }"></svg-icon>
       <span>我的</span>
     </section>
   </section>
@@ -26,18 +26,12 @@ export default {
 
   data() {
     return {
-      isActiv: {
-        0: false,
-        1: false,
-        2: false,
-        3: false,
-      },
-      previousIndex: null
+      
     };
   },
 
   mounted() {
-    
+    this.currentPath = this.$route.path;
   },
 
   computed: {
@@ -45,13 +39,15 @@ export default {
   },
 
   methods: {
-     gotoAddress(index){
-      if (this.previousIndex !== index) {
-        this.isActiv[this.previousIndex] = false;
-        this.previousIndex = index;
+    gotoAddress(path) {
+      if (this.currentPath !== path) {
+        this.currentPath = path;
+        this.$router.push(path);
       }
-      this.isActiv[index] = true;
     },
+    isActive(path) {
+      return this.$route.path === path;
+    }
   },
   
   components: {
