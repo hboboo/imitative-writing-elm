@@ -2,7 +2,7 @@
   <div class="shoplist_container">
     <ul type="1">
       <li v-for="item in shopListArr" :key="item.id" class="shop_li">
-        <router-link :to="'/home'" class="shop_link">
+        <router-link :to="'/shop'" class="shop_link">
           <section>
             <img :src="imgUrl + item.image_path" class="shop_img">
           </section>
