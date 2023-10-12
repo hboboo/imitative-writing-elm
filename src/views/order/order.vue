@@ -29,12 +29,14 @@
         </section>
       </li>
     </ul>
+    <foot-guide></foot-guide>
   </div>
 </template>
 
 <script>
 import headTop from '../../components/header/head.vue'
 import svgIcon from '../../components/common/svgIcon.vue'
+import footGuide from '../../components/footer/footGuide.vue'
 import axios from 'axios';
 export default {
   name: 'Order',
@@ -57,7 +59,8 @@ export default {
   },
   components: {
     headTop,
-    svgIcon
+    svgIcon,
+    footGuide
   }
 };
 </script>

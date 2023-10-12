@@ -1,19 +1,19 @@
 <template>
   <section id="foot_guide">
-    <section class="guide_item" @click="gotoAddress">
-      <svg-icon icon-class="takeout" class="icon_style"></svg-icon>
+    <section class="guide_item" @click="gotoAddress(0)">
+      <svg-icon icon-class="takeout" class="icon_style" :class="{active: isActiv[0]}"></svg-icon>
       <span>外卖</span>
     </section>
-    <section class="guide_item" @click="gotoAddress">
-      <svg-icon icon-class="probe" class="icon_style"></svg-icon>
+    <section class="guide_item" @click="gotoAddress(1)">
+      <svg-icon icon-class="probe" class="icon_style" :class="{active: isActiv[1]}"></svg-icon>
       <span>搜索</span>
     </section>
-    <section class="guide_item" @click="gotoAddress">
-      <svg-icon icon-class="order" class="icon_style"></svg-icon>
+    <section class="guide_item" @click="gotoAddress(2)">
+      <svg-icon icon-class="order" class="icon_style" :class="{active: isActiv[2]}"></svg-icon>
       <span>订单</span>
     </section>
-    <section class="guide_item" @click="gotoAddress">
-      <svg-icon :icon-class="iconClass" class="icon_style"></svg-icon>
+    <section class="guide_item" @click="gotoAddress(3)">
+      <svg-icon icon-class="myhomepage" class="icon_style" :class="{active: isActiv[3]}"></svg-icon>
       <span>我的</span>
     </section>
   </section>
@@ -26,7 +26,13 @@ export default {
 
   data() {
     return {
-      isActiv: false
+      isActiv: {
+        0: false,
+        1: false,
+        2: false,
+        3: false,
+      },
+      previousIndex: null
     };
   },
 
@@ -35,15 +41,17 @@ export default {
   },
 
   computed: {
-    iconClass(){
-      return this.isActiv  ? 'myhomepageactive' : 'myhomepage';
-    }
+    
   },
 
   methods: {
-    gotoAddress(){
-      this.isActiv = !this.isActiv
-    }
+     gotoAddress(index){
+      if (this.previousIndex !== index) {
+        this.isActiv[this.previousIndex] = false;
+        this.previousIndex = index;
+      }
+      this.isActiv[index] = true;
+    },
   },
   
   components: {
